@@ -89,6 +89,31 @@ CREATE TABLE users(
     CONSTRAINT FK_GENDER FOREIGN KEY(id) REFERENCES gender(id)
 );
 
+DROP TABLE IF EXISTS visitors;
+CREATE TABLE visitors(
+    id int(11) not null primary key auto_increment,
+    fullname varchar(64),
+    whom_to_see int not null,
+    purpose int not null,
+    date_added timestamp,
+    address text,
+    CONSTRAINT FK_WHOM_TO_SEE FOREIGN KEY (id) references users(id),
+    CONSTRAINT FK_PURPOSE FOREIGN KEY(id) references purpose(id)
+    -- WHOM TO SEE [USER ID] int fk from user table
+    -- PURPOSE [LOOK UP] int fk from purpose table
+    -- ADDRESS text    -- DATE ADDED timestamp
+
+);
+
+DROP TABLE IF EXISTS clock_in;
+CREATE TABLE clock_in(
+	visitors_id int not null, -- VISITOR ID [VISITOR TABLE] int fk from visitor table
+    time_in timestamp,-- TIME IN timestamp,
+    time_out timestamp default '0000-00-00 00:00:00',
+    CONSTRAINT FK_VISITORS_ID FOREIGN KEY (id) references visitors(id)
+);
+
+
 
 
 
