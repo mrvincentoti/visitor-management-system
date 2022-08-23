@@ -3,7 +3,7 @@ const express = require('express');    //creating express application
 const cors = require("cors");
 const app = express();
 const corsOptions = {
-    origin: "http://localhost:3001"
+    origin: "*"
 };
 const userRouter = require('./api/users/user.router'); //importing user.router             //initializing express application
 
