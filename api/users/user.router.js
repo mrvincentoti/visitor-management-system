@@ -10,7 +10,7 @@ const {          //We have to import all the controllers in the router
     login,
     getUsers,
     createUsers
- } = require('./user.controller'); 
+} = require('./user.controller');
 
 const router = require('express').Router();
 const { checkToken } = require('../../auth/token_validation');
@@ -22,11 +22,11 @@ router.get('/getVisitors', checkToken, getVisitors);
 router.get('/getVisitorsByVisitorId:id', checkToken, getVisitorsByVisitorId);
 router.patch('/updateVisitors', checkToken, updateVisitors);
 router.delete('/deleteVisitors', checkToken, deleteVisitors);
-router.get('/getUserByUserId:id',checkToken, getUserByUserId);
+router.get('/getUserByUserId:id', checkToken, getUserByUserId);
 router.patch('/updateUsers', checkToken, updateUser);
 router.delete('/deleteUser', checkToken, deleteUser);
-router.post('/login', login);   //used for login
-router.get('/getUsers', checkToken, getUsers);
-router.post('/createUsers', checkToken,  createUsers);
+router.post('/user/login', login);   //used for login
+router.get('/user/getUsers', getUsers);
+router.post('/user/createUsers', createUsers);
 
 module.exports = router;
