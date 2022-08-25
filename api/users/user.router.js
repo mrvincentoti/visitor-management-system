@@ -9,7 +9,8 @@ const {          //We have to import all the controllers in the router
     deleteVisitors,
     login,
     getUsers,
-    createUsers
+    createUsers,
+    getVisitorPurpose
 } = require('./user.controller');
 
 const router = require('express').Router();
@@ -28,5 +29,6 @@ router.delete('/user/deleteUser', checkToken, deleteUser);
 router.post('/user/login', login);   //used for login
 router.get('/user/getUsers', getUsers);
 router.post('/user/createUsers', createUsers);
+router.get('/visitor/getVisitorPurpose', getVisitorPurpose);
 
 module.exports = router;

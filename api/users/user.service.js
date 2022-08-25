@@ -58,7 +58,19 @@ module.exports = {
     },
     getVisitors: callBack => {
       pool.query(
-        `select id, fullname from visitors`,
+        `select * from visitors`,
+        [],
+        (error, results, fields) => {
+          if (error) {
+            return callBack(error);
+          }
+          return callBack(null, results);
+        }
+      );
+    },
+    getVisitorPurpose: callBack => {
+      pool.query(
+        `select id, purpose from purpose`,
         [],
         (error, results, fields) => {
           if (error) {
