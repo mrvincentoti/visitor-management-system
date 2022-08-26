@@ -11,7 +11,8 @@ const {
   deleteVisitors,
   getUserByUserEmail,
   getUsers,
-  createUsers
+  createUsers,
+  getVisitorPurpose
 } = require('./user.service');  //we called the service
 
 const { genSaltSync, hashSync, compareSync} = require('bcrypt');//importing bcrypt
@@ -132,6 +133,18 @@ module.exports = {
   },
   getVisitors: (req, res) => {
       getVisitors((err, results) => {
+          if (err) {
+              console.log(err);
+              return;
+          }
+          return res.json({
+              success: 1,
+              data: results
+          });
+      });
+  },
+  getVisitorPurpose: (req, res) => {
+      getVisitorPurpose((err, results) => {
           if (err) {
               console.log(err);
               return;
