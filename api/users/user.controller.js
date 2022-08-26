@@ -12,7 +12,8 @@ const {
   getUserByUserEmail,
   getUsers,
   createUsers,
-  getVisitorPurpose
+  getVisitorPurpose,
+	getAllVisitors
 } = require('./user.service');  //we called the service
 
 const { genSaltSync, hashSync, compareSync} = require('bcrypt');//importing bcrypt
@@ -65,12 +66,14 @@ module.exports = {
                  message: 'Database connection error'
               });
           }
+       
           return res.status(200).json({
               success: 1,
               data: results
           });
       });
   },
+
   updateVisitors: (req, res) => {
     const body = req.body;
     console.log(body);
@@ -143,6 +146,18 @@ module.exports = {
           });
       });
   },
+	getAllVisitors: (req, res) => {
+		getAllVisitors((err, results) => {
+				if (err) {
+						console.log(err);
+						return;
+				}
+				return res.json({
+						success: 1,
+						data: results
+				});
+		});
+},
   getVisitorPurpose: (req, res) => {
       getVisitorPurpose((err, results) => {
           if (err) {
@@ -219,27 +234,20 @@ module.exports = {
       const body = req.body;   //whatever the user passes will be stored in this variable
       getUserByUserEmail(body.email, (err, results) => {
           if (err) {
-              console.log(err);
+              console.log(err.message);
           }
-          console.log(results);
           if (!results) {
               return res.json({
                   success: 0,
                   data: 'Invalid email or password'
               });
           }
-        //   return res.json({
-        //     success: 1,
-        //     message: "login successful",
-        //   });
+        
           const result = compareSync(body.password, results.password);
-          console.log(body.password);
-          console.log(results.password);
-          console.log(result);
           if (result) {
               results.password = undefined;
               const jsontoken = sign({ result: results }, process.env.AUTH_KEY, {
-                  expiresIn: '1h' 
+                  expiresIn: '24h' 
               }); //sign takes 3 parameters
               return res.json({
                   success: 1,

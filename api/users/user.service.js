@@ -38,27 +38,54 @@ module.exports = {
     );
     },
     createVisitors: (data, callBack) => {
-        console.log(data)
         pool.query(
-          `insert into visitors(fullname, user_id, purpose_id, date_added, address) values(?,?,?,?,?)`,
+          `insert into visitors(fullname, user_id, purpose_id, address) values(?,?,?,?)`,
           [
             data.fullname,
             data.user_id,
             data.purpose_id,
-            data.date_added,
             data.address
           ],
           (error, results, field) => {
             if (error) {
                return callBack(error);
             }
+            signInVisitor(results);
             return callBack(null, results);
           }
+
+          
         );
     },
+
     getVisitors: callBack => {
       pool.query(
-        `select * from visitors`,
+        `
+        select v.id as id, v.fullname as fullname, v.purpose_id as purpose, v.date_added as date_added, v.address as address,
+        c.time_in as time_in, c.time_out as time_out,u.first_name as first_name, u.last_name as last_name
+        from clock_in c
+        join visitors v on v.id = c.visitor_id
+        join users u on u.id = v.user_id
+        where date(c.time_in) = current_date
+        `,
+        [],
+        (error, results, fields) => {
+          if (error) {
+            return callBack(error);
+          }
+          return callBack(null, results);
+        }
+      );
+    },
+    getAllVisitors: callBack => {
+      pool.query(
+        `
+        select v.id as id, v.fullname as fullname, v.purpose_id as purpose, v.date_added as date_added, v.address as address,
+        c.time_in as time_in, c.time_out as time_out,u.first_name as first_name, u.last_name as last_name
+        from visitors v
+        join clock_in c on v.id = c.visitor_id
+        join users u on u.id = v.user_id
+        `,
         [],
         (error, results, fields) => {
           if (error) {
@@ -181,3 +208,21 @@ module.exports = {
       );
     }
 };
+
+
+signInVisitor = (results) => {
+  pool.query(
+    `insert into clock_in(visitor_id) values(?)`,
+    [
+      results.insertId
+    ],
+    (error, results, fields) => {
+      if (error) {
+        console.log(error);
+        return error;
+      }
+      console.log(results);
+      return results;
+    }
+  )  
+}
