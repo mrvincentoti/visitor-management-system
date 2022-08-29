@@ -11,7 +11,8 @@ const {          //We have to import all the controllers in the router
     getUsers,
     createUsers,
     getVisitorPurpose,
-    getAllVisitors
+    getAllVisitors,
+    getVisitorByFullname
 } = require('./user.controller');
 
 const router = require('express').Router();
@@ -33,5 +34,6 @@ router.post('/user/login', login);   //used for login
 router.get('/user/getUsers', getUsers);
 router.post('/user/createUsers', checkToken, createUsers);
 router.get('/visitor/getVisitorPurpose', getVisitorPurpose);
+router.get('/visitor/getVisitorByFullname', getVisitorByFullname);
 
 module.exports = router;

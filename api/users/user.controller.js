@@ -13,7 +13,9 @@ const {
   getUsers,
   createUsers,
   getVisitorPurpose,
-	getAllVisitors
+  getAllVisitors,
+	getVisitorByFullname
+
 } = require('./user.service');  //we called the service
 
 const { genSaltSync, hashSync, compareSync} = require('bcrypt');//importing bcrypt
@@ -173,6 +175,27 @@ module.exports = {
   getVisitorsByVisitorId: (req, res) => {
     const id = req.params.id;
     getVisitorsByVisitorId(id, (err, results) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      if (!results) {
+        return res.json({
+          success: 0,
+          message: "Record not Found"
+        });
+      }
+      return res.json({
+        success: 1,
+        data: results
+      });
+    });
+  },
+  getVisitorByFullname: (req, res) => {
+    const fullname = req.query.fullname;
+		console.log(fullname);
+
+    getVisitorByFullname(fullname, (err, results) => {
       if (err) {
         console.log(err);
         return;
