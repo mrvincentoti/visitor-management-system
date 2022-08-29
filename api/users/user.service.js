@@ -95,6 +95,9 @@ module.exports = {
         }
       );
     },
+
+    
+
     getVisitorPurpose: callBack => {
       pool.query(
         `select id, purpose from purpose`,
@@ -193,6 +196,20 @@ module.exports = {
           data.date_added,
           data.address,
           data.id
+        ],
+        (error, results, fields) =>{
+          if (error) {
+            callBack(error);
+          }
+          return callBack(null, results);
+        }
+      );
+    },
+    updateVisitorClockout: (data, callBack) => {
+      pool.query(
+        `update clock_in set time_out = now() where visitor_id=? `,
+        [
+          data.visitor_id
         ],
         (error, results, fields) =>{
           if (error) {
