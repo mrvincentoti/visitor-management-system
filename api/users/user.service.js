@@ -164,6 +164,25 @@ module.exports = {
         }
       );
     },
+    getVisitorByFullname: (fullname, callBack) => {
+      pool.query(
+        `
+        select v.id as id, v.fullname as fullname, v.purpose_id as purpose, v.date_added as date_added, v.address as address,
+        c.time_in as time_in, c.time_out as time_out,u.first_name as first_name, u.last_name as last_name
+        from clock_in c
+        join visitors v on v.id = c.visitor_id
+        join users u on u.id = v.user_id
+        where v.fullname like '%${fullname}%'
+        `,
+        [fullname],
+        (error, results, fields) => {
+          if (error) {
+            callBack(error);
+          }
+          return callBack(null, results[0]);
+        }
+      );
+    },
     updateVisitors: (data, callBack) => {
       pool.query(
         `update visitors set fullname=?, user_id=?, purpose_id=?, date_added=?, address=? where id=?`,
