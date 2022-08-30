@@ -67,6 +67,7 @@ module.exports = {
         join visitors v on v.id = c.visitor_id
         join users u on u.id = v.user_id
         where date(c.time_in) = current_date
+        order by id desc
         `,
       [],
       (error, results, fields) => {
@@ -207,9 +208,10 @@ module.exports = {
     },
     updateVisitorClockout: (data, callBack) => {
       pool.query(
-        `update clock_in set time_out = now() where visitor_id=? `,
+        `update clock_in set time_out = now() where visitor_id=? and time_out=?`,
         [
-          data.visitor_id
+          data.id,
+          '2000-08-02 00:00:00'
         ],
         (error, results, fields) =>{
           if (error) {

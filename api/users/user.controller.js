@@ -98,11 +98,8 @@ module.exports = {
         });
     });
   },
-	updateVisitorClockout: (req, res) => {
+updateVisitorClockout: (req, res) => {
     const body = req.body;
-    console.log(body);
-    // const salt = genSaltSync(10);
-    // body.password = hashSync(body.password, salt);
     updateVisitorClockout(body, (err, results) => {
         if (err) {
             console.log(err);
