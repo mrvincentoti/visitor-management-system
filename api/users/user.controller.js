@@ -15,6 +15,7 @@ const {
   getVisitorPurpose,
   getAllVisitors,
 	getVisitorByFullname,
+	updateVisitorClockout,
     getVisitorsNumber
 
 } = require('./user.service');  //we called the service
@@ -76,13 +77,31 @@ module.exports = {
           });
       });
   },
-
   updateVisitors: (req, res) => {
     const body = req.body;
     console.log(body);
     // const salt = genSaltSync(10);
     // body.password = hashSync(body.password, salt);
     updateVisitors(body, (err, results) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        if(!results){
+            return res.json({
+                success: 0,
+                message: 'failed to update visitor'
+            });
+        }
+        return res.json({
+            success: 1,
+            message: 'updated successfully'
+        });
+    });
+  },
+updateVisitorClockout: (req, res) => {
+    const body = req.body;
+    updateVisitorClockout(body, (err, results) => {
         if (err) {
             console.log(err);
             return;
