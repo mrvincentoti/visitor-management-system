@@ -97,6 +97,27 @@ module.exports = {
       }
     );
   },
+  getVisitorsSignOutNumber: callBack => {
+    const number = '2000-08-02 00:00:00';
+    pool.query(
+      `
+
+      select v.id as id, v.fullname as fullname, v.purpose_id as purpose, v.date_added as date_added, v.address as address,
+      c.time_in as time_in, c.time_out as time_out,u.first_name as first_name, u.last_name as last_name
+      from clock_in c
+      join visitors v on v.id = c.visitor_id
+      join users u on u.id = v.user_id
+      where date(c.time_out) = current_date
+        `,
+      [],
+      (error, results, fields) => {
+        if (error) {
+          return callBack(error);
+        }
+        return callBack(null, results);
+      }
+    );
+  },
   getAllVisitors: callBack => {
     pool.query(
       `

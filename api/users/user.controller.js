@@ -16,7 +16,9 @@ const {
   getAllVisitors,
 	getVisitorByFullname,
 	updateVisitorClockout,
+    getVisitorsSignOutNumber,
     getVisitorsNumber
+    
 
 } = require('./user.service');  //we called the service
 
@@ -182,6 +184,18 @@ updateVisitorClockout: (req, res) => {
 },
 getVisitorsNumber: (req, res) => {
     getVisitorsNumber((err, results) => {
+            if (err) {
+                    console.log(err);
+                    return;
+            }
+            return res.json({
+                    success: 1,
+                    data: results
+            });
+    });
+},
+getVisitorsSignOutNumber: (req, res) => {
+    getVisitorsSignOutNumber((err, results) => {
             if (err) {
                     console.log(err);
                     return;
