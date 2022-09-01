@@ -39,12 +39,13 @@ module.exports = {
   },
   createVisitors: (data, callBack) => {
     pool.query(
-      `insert into visitors(fullname, user_id, purpose_id, address) values(?,?,?,?)`,
+      `insert into visitors(fullname, user_id, purpose_id, address, phone_number) values(?,?,?,?,?)`,
       [
         data.fullname,
         data.user_id,
         data.purpose_id,
-        data.address
+        data.address,
+        data.phone_number
       ],
       (error, results, field) => {
         if (error) {
@@ -57,11 +58,10 @@ module.exports = {
 
     );
   },
-
   getVisitors: callBack => {
     pool.query(
       `
-        select v.id as id, v.fullname as fullname, v.purpose_id as purpose, v.date_added as date_added, v.address as address,
+        select v.id as id, v.fullname as fullname, v.purpose_id as purpose, v.date_added as date_added, v.address as address, v.phone_number as phone_number,
         c.time_in as time_in, c.time_out as time_out,u.first_name as first_name, u.last_name as last_name
         from clock_in c
         join visitors v on v.id = c.visitor_id
@@ -121,7 +121,7 @@ module.exports = {
   getAllVisitors: callBack => {
     pool.query(
       `
-        select v.id as id, v.fullname as fullname, v.purpose_id as purpose, v.date_added as date_added, v.address as address,
+        select v.id as id, v.fullname as fullname, v.purpose_id as purpose, v.date_added as date_added, v.address as address, v.phone_number as phone_number,
         c.time_in as time_in, c.time_out as time_out,u.first_name as first_name, u.last_name as last_name
         from visitors v
         join clock_in c on v.id = c.visitor_id
@@ -135,11 +135,8 @@ module.exports = {
           return callBack(null, results);
         }
       );
-    },
-
-    
-
-    getVisitorPurpose: callBack => {
+  },
+  getVisitorPurpose: callBack => {
       pool.query(
         `select id, purpose from purpose`,
         [],
@@ -150,8 +147,8 @@ module.exports = {
           return callBack(null, results);
         }
       );
-    },
-    getUserByUserId: (id, callBack) => {
+  },
+  getUserByUserId: (id, callBack) => {
       pool.query(
         `select username,  email, first_name, last_name, phone_number, gender_id, department_id from users where id=?`,
         [id],
@@ -162,8 +159,8 @@ module.exports = {
           return callBack(null, results[0]);
         }
       );
-    },
-    updateUser: (data, callBack) => {
+  },
+  updateUser: (data, callBack) => {
       pool.query(
         `update  users set username=?,  email=?, first_name=?, last_name=?, phone_number=?, gender_id=?, department_id=? where id = ?`,
         [
@@ -183,8 +180,8 @@ module.exports = {
           return callBack(null, results);
         }
       );
-    },
-    deleteUser: (data, callBack) => {
+  },
+  deleteUser: (data, callBack) => {
       pool.query(
         `delete from users where id = ?`,
         [data.id],
@@ -195,10 +192,10 @@ module.exports = {
           return callBack(null, results[0]);
         }
       );
-    },
-    getVisitorsByVisitorId: (id, callBack) => {
+  },
+  getVisitorsByVisitorId: (id, callBack) => {
       pool.query(
-        `select fullname, user_id, purpose_id, date_added, address from visitors  where id=?`,
+        `select fullname, user_id, purpose_id, date_added, address, phone_number from visitors  where id=?`,
         [id],
         (error, results, fields) => {
           if (error) {
@@ -207,11 +204,11 @@ module.exports = {
           return callBack(null, results[0]);
         }
       );
-    },
-    getVisitorByFullname: (fullname, callBack) => {
+  },
+  getVisitorByFullname: (fullname, callBack) => {
       pool.query(
         `
-        select v.id as id, v.fullname as fullname, v.purpose_id as purpose, v.date_added as date_added, v.address as address,
+        select v.id as id, v.fullname as fullname, v.purpose_id as purpose, v.date_added as date_added, v.address as address, v.phone_number as phone_number,
         c.time_in as time_in, c.time_out as time_out,u.first_name as first_name, u.last_name as last_name
         from clock_in c
         join visitors v on v.id = c.visitor_id
@@ -226,16 +223,17 @@ module.exports = {
           return callBack(null, results);
         }
       );
-    },
-    updateVisitors: (data, callBack) => {
+  },
+  updateVisitors: (data, callBack) => {
       pool.query(
-        `update visitors set fullname=?, user_id=?, purpose_id=?, date_added=?, address=? where id=?`,
+        `update visitors set fullname=?, user_id=?, purpose_id=?, date_added=?, address=?, phone_number where id=?`,
         [
           data.fullname,
           data.user_id,
           data.purpose_id,
           data.date_added,
           data.address,
+          data.phone_number,
           data.id
         ],
         (error, results, fields) =>{
@@ -245,8 +243,8 @@ module.exports = {
           return callBack(null, results);
         }
       );
-    },
-    updateVisitorClockout: (data, callBack) => {
+  },
+  updateVisitorClockout: (data, callBack) => {
       pool.query(
         `update clock_in set time_out = now() where visitor_id=? and time_out=?`,
         [
@@ -260,8 +258,8 @@ module.exports = {
           return callBack(null, results);
         }
       );
-    },
-    deleteVisitors: (data, callBack) => {
+  },
+  deleteVisitors: (data, callBack) => {
       pool.query(
         `delete from visitors where id = ?`,
         [data.id],
@@ -272,8 +270,8 @@ module.exports = {
           return callBack(null, results[0]);
         }
       );
-    },
-    getUserByUserEmail: (email, callBack) => {
+  },
+  getUserByUserEmail: (email, callBack) => {
       pool.query(
         `select * from users where email = ?`,
         [email],
@@ -284,7 +282,7 @@ module.exports = {
           return callBack(null, results[0]);
         }
       );
-    }
+  }
 };
 
 
