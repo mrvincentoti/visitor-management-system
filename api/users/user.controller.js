@@ -14,7 +14,8 @@ const {
   createUsers,
   getVisitorPurpose,
   getAllVisitors,
-	getVisitorByFullname
+	getVisitorByFullname,
+    getVisitorsNumber
 
 } = require('./user.service');  //we called the service
 
@@ -159,6 +160,18 @@ module.exports = {
 						data: results
 				});
 		});
+},
+getVisitorsNumber: (req, res) => {
+    getVisitorsNumber((err, results) => {
+            if (err) {
+                    console.log(err);
+                    return;
+            }
+            return res.json({
+                    success: 1,
+                    data: results
+            });
+    });
 },
   getVisitorPurpose: (req, res) => {
       getVisitorPurpose((err, results) => {
