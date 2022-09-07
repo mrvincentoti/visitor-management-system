@@ -14,9 +14,11 @@ const {
   createUsers,
   getVisitorPurpose,
   getAllVisitors,
-	getVisitorByFullname,
-	updateVisitorClockout,
-    getVisitorsNumber
+  getVisitorByFullname,
+  updateVisitorClockout,
+  signedInVisitors,
+  clockoutTagNumber
+
 
 } = require('./user.service');  //we called the service
 
@@ -99,7 +101,7 @@ module.exports = {
         });
     });
   },
-updateVisitorClockout: (req, res) => {
+  updateVisitorClockout: (req, res) => {
     const body = req.body;
     updateVisitorClockout(body, (err, results) => {
         if (err) {
@@ -110,6 +112,25 @@ updateVisitorClockout: (req, res) => {
             return res.json({
                 success: 0,
                 message: 'failed to update visitor'
+            });
+        }
+        return res.json({
+            success: 1,
+            message: 'updated successfully'
+        });
+    });
+  },
+  clockoutTagNumber: (req, res) => {
+    const body = req.body;
+    clockoutTagNumber(body, (err, results) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        if(!results){
+            return res.json({
+                success: 0,
+                message: 'Invalid Tag Number'
             });
         }
         return res.json({
@@ -168,7 +189,7 @@ updateVisitorClockout: (req, res) => {
           });
       });
   },
-	getAllVisitors: (req, res) => {
+  getAllVisitors: (req, res) => {
 		getAllVisitors((err, results) => {
 				if (err) {
 						console.log(err);
@@ -179,7 +200,8 @@ updateVisitorClockout: (req, res) => {
 						data: results
 				});
 		});
-},
+  },
+
 getVisitorsNumber: (req, res) => {
     getVisitorsNumber((err, results) => {
             if (err) {
@@ -192,6 +214,7 @@ getVisitorsNumber: (req, res) => {
             });
     });
 },
+
   getVisitorPurpose: (req, res) => {
       getVisitorPurpose((err, results) => {
           if (err) {
@@ -205,7 +228,7 @@ getVisitorsNumber: (req, res) => {
       });
   },
   getVisitorsByVisitorId: (req, res) => {
-    const id = req.params.id;
+    const id = req.query.id;
     getVisitorsByVisitorId(id, (err, results) => {
       if (err) {
         console.log(err);
@@ -318,7 +341,23 @@ getVisitorsNumber: (req, res) => {
           });
           }  //Now we are calling this service
       });
-  }
+  },
+  signedInVisitors: (req, res) => {
+    const fullname = req.query.fullname;
+    signedInVisitors(fullname, (err, results) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        return res.json({
+            success: 1,
+            data: results
+        });
+    });
+},
+geTagNumber: (req, res) => {
+
+}
 };
 
 //We have definded all the controllers, now it's time to define the route
