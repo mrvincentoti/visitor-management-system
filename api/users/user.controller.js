@@ -14,10 +14,10 @@ const {
   createUsers,
   getVisitorPurpose,
   getAllVisitors,
-	getVisitorByFullname,
-	updateVisitorClockout,
+  getVisitorByFullname,
+  updateVisitorClockout,
   getVisitorsSignOutNumber,
-  getVisitorsNumber
+  getVisitorsNumber,
   signedInVisitors,
   clockoutTagNumber
 } = require('./user.service');  //we called the service
