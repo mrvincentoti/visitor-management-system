@@ -13,10 +13,12 @@ const {          //We have to import all the controllers in the router
     getVisitorPurpose,
     getAllVisitors,
     getVisitorByFullname,
+    getVisitorsNumber,
+    getVisitorsSignOutNumber,
+    updateVisitorClockout
     updateVisitorClockout,
     signedInVisitors,
     clockoutTagNumber,
-     getVisitorsNumber
 } = require('./user.controller');
 
 const router = require('express').Router();
@@ -40,6 +42,7 @@ router.post('/user/createUsers', createUsers);
 router.get('/visitor/getVisitorPurpose', getVisitorPurpose);
 router.get('/visitor/getVisitorByFullname', getVisitorByFullname);
 router.get('/visitor/getVisitorsNumber', checkToken, getVisitorsNumber);
+router.get('/visitor/getVisitorsSignOutNumber', checkToken, getVisitorsSignOutNumber);
 router.patch('/visitor/updateVisitorClockout', updateVisitorClockout);
 router.get('/visitor/getVisitorByFullname', getVisitorByFullname);
 router.get('/visitor/signedInVisitors', signedInVisitors);

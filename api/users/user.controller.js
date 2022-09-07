@@ -14,12 +14,12 @@ const {
   createUsers,
   getVisitorPurpose,
   getAllVisitors,
-  getVisitorByFullname,
-  updateVisitorClockout,
+	getVisitorByFullname,
+	updateVisitorClockout,
+  getVisitorsSignOutNumber,
+  getVisitorsNumber
   signedInVisitors,
   clockoutTagNumber
-
-
 } = require('./user.service');  //we called the service
 
 const { genSaltSync, hashSync, compareSync} = require('bcrypt');//importing bcrypt
@@ -204,6 +204,19 @@ module.exports = {
 
 getVisitorsNumber: (req, res) => {
     getVisitorsNumber((err, results) => {
+            if (err) {
+                    console.log(err);
+                    return;
+            }
+            return res.json({
+                    success: 1,
+                    data: results
+            });
+    });
+},
+
+getVisitorsSignOutNumber: (req, res) => {
+    getVisitorsSignOutNumber((err, results) => {
             if (err) {
                     console.log(err);
                     return;
