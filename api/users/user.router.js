@@ -15,7 +15,6 @@ const {          //We have to import all the controllers in the router
     getVisitorByFullname,
     getVisitorsNumber,
     getVisitorsSignOutNumber,
-    updateVisitorClockout
     updateVisitorClockout,
     signedInVisitors,
     clockoutTagNumber,
