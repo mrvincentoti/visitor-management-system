@@ -1,13 +1,3 @@
--- MariaDB dump 10.19  Distrib 10.4.24-MariaDB, for Win64 (AMD64)
---
--- Host: localhost    Database: vms
--- ------------------------------------------------------
--- Server version	8.0.30
-
---
--- Table structure for table `user_type`
---
-
 DROP TABLE IF EXISTS `user_type`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -21,8 +11,8 @@ CREATE TABLE `user_type`
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-INSERT INTO `
-user_type`
+INSERT INTO
+user_type
 VALUES
     (1, 'Admin'),
     (2, 'Staff'),
@@ -47,8 +37,8 @@ CREATE TABLE `department`
 --
 
 
-INSERT INTO `
-department`
+INSERT INTO
+department
 VALUES
     (1, 'BlackSentry'),
     (2, 'Cloud Unit'),
@@ -77,8 +67,8 @@ CREATE TABLE `gender`
 -- Dumping data for table `gender`
 --
 
-INSERT INTO `
-gender`
+INSERT INTO
+gender
 VALUES
     (1, 'M'),
     (2, 'F');
@@ -102,8 +92,8 @@ CREATE TABLE `purpose`
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
-INSERT INTO `
-purpose`
+INSERT INTO 
+purpose
 VALUES
     (1, 'enquiry'),
     (2, 'Job Application'),
@@ -145,8 +135,8 @@ CREATE TABLE `users`
 (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO `
-users`
+INSERT INTO 
+users
 VALUES
     (1, 'zach', 'civirzach@gmail.com', 'CIVIR-TER', 'ZACH-UKOH', '08130402087', 1, 1, 'Playboy@123'),
     (2, 'Vincento', 'mrvincentito@gmail.com', 'VINCENT', 'ITO', '080467894132', 2, 2, 'Playboy@123'),
@@ -185,8 +175,8 @@ CREATE TABLE `visitors`
 (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO `
-visitors`
+INSERT INTO 
+visitors
 VALUES
     (1, 'Mrs. Diya', 2, 2, '2022-08-01 23:00:00', 'Zone 4, 5th Floor, IGI House, 3, Gwani Street, Off IBB Way, Wuse 900281, Abuja', '08050917923'),
     (2, 'Ben Aflek', 4, 2, '2022-09-06 15:36:30', '546 South Glendale St. Waukegan, IL 60085', '549889987987'),
@@ -213,13 +203,10 @@ CREATE TABLE `clock_in`
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `clock_in`
---
 
 
-INSERT INTO `
-clock_in`
+INSERT INTO 
+clock_in
 VALUES
     (2, '2022-09-06 15:36:30', '2022-09-06 16:57:52', NULL),
     (3, '2022-09-06 15:37:11', '2022-09-06 15:38:34', NULL),
@@ -231,19 +218,10 @@ VALUES
     (9, '2022-09-07 12:03:27', '2022-09-07 12:08:35', NULL);
 
 
---
--- Table structure for table `department`
--
-
-
---
--- Table structure for table `tag`
---
-
-DROP TABLE IF EXISTS `tag`;
+DROP TABLE IF EXISTS tag;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tag`
+CREATE TABLE tag
 (
   `tag_number` varchar
 (3) NOT NULL,
@@ -254,8 +232,8 @@ CREATE TABLE `tag`
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-INSERT INTO `
-tag`
+INSERT INTO 
+tag
 VALUES
     ('001', 1),
     ('002', 1),
@@ -332,8 +310,8 @@ CREATE TABLE `visitor_tag`
 (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO `
-visitor_tag`
+INSERT INTO 
+visitor_tag
 VALUES
     (2, '001'),
     (3, '002'),
