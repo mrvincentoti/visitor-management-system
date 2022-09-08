@@ -4,20 +4,7 @@
 -- ------------------------------------------------------
 -- Server version	8.0.30
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
---
--- Table structure for table `clock_in`
---
 
 DROP TABLE IF EXISTS `clock_in`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -38,8 +25,7 @@ CREATE TABLE `clock_in`
 -- Dumping data for table `clock_in`
 --
 
-LOCK TABLES `clock_in` WRITE;
-/*!40000 ALTER TABLE `clock_in` DISABLE KEYS */;
+
 INSERT INTO `
 clock_in`
 VALUES
@@ -51,8 +37,7 @@ VALUES
     (7, '2022-09-07 11:14:09', '2022-09-07 11:20:41', NULL),
     (8, '2022-09-07 11:41:52', '2022-09-07 12:02:39', NULL),
     (9, '2022-09-07 12:03:27', '2022-09-07 12:08:35', NULL);
-/*!40000 ALTER TABLE `clock_in` ENABLE KEYS */;
-UNLOCK TABLES;
+
 
 --
 -- Table structure for table `department`
@@ -75,8 +60,6 @@ CREATE TABLE `department`
 -- Dumping data for table `department`
 --
 
-LOCK TABLES `department` WRITE;
-/*!40000 ALTER TABLE `department` DISABLE KEYS */;
 INSERT INTO `
 department`
 VALUES
@@ -88,8 +71,7 @@ VALUES
     (6, 'Engineering'),
     (7, 'IT Support'),
     (8, 'Product Unit');
-/*!40000 ALTER TABLE `department` ENABLE KEYS */;
-UNLOCK TABLES;
+
 
 --
 -- Table structure for table `gender`
@@ -112,15 +94,12 @@ CREATE TABLE `gender`
 -- Dumping data for table `gender`
 --
 
-LOCK TABLES `gender` WRITE;
-/*!40000 ALTER TABLE `gender` DISABLE KEYS */;
 INSERT INTO `
 gender`
 VALUES
     (1, 'M'),
     (2, 'F');
-/*!40000 ALTER TABLE `gender` ENABLE KEYS */;
-UNLOCK TABLES;
+
 
 --
 -- Table structure for table `purpose`
@@ -139,12 +118,7 @@ CREATE TABLE `purpose`
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `purpose`
---
 
-LOCK TABLES `purpose` WRITE;
-/*!40000 ALTER TABLE `purpose` DISABLE KEYS */;
 INSERT INTO `
 purpose`
 VALUES
@@ -153,8 +127,7 @@ VALUES
     (3, 'Visiting'),
     (4, 'Appointment'),
     (5, 'Work');
-/*!40000 ALTER TABLE `purpose` ENABLE KEYS */;
-UNLOCK TABLES;
+
 
 --
 -- Table structure for table `tag`
@@ -174,12 +147,6 @@ CREATE TABLE `tag`
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `tag`
---
-
-LOCK TABLES `tag` WRITE;
-/*!40000 ALTER TABLE `tag` DISABLE KEYS */;
 INSERT INTO `
 tag`
 VALUES
@@ -233,8 +200,7 @@ VALUES
     ('048', 1),
     ('049', 1),
     ('050', 1);
-/*!40000 ALTER TABLE `tag` ENABLE KEYS */;
-UNLOCK TABLES;
+
 
 --
 -- Table structure for table `user_type`
@@ -253,20 +219,13 @@ CREATE TABLE `user_type`
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `user_type`
---
-
-LOCK TABLES `user_type` WRITE;
-/*!40000 ALTER TABLE `user_type` DISABLE KEYS */;
 INSERT INTO `
 user_type`
 VALUES
     (1, 'Admin'),
     (2, 'Staff'),
     (3, 'Visitor');
-/*!40000 ALTER TABLE `user_type` ENABLE KEYS */;
-UNLOCK TABLES;
+
 
 --
 -- Table structure for table `users`
@@ -305,14 +264,7 @@ CREATE TABLE `users`
 (`gender_id`) REFERENCES `gender`
 (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `users`
---
-
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `
 users`
 VALUES
@@ -323,8 +275,6 @@ VALUES
     (5, 'zach', 'civirzach@gmail.com', 'CIVIR-TER', 'ZACH-UKOH', '08130402087', 1, 1, 'Playboy@123'),
     (6, 'zach', 'civirzach@gmail.com', 'CIVIR-TER', 'ZACH-UKOH', '08130402087', 1, 1, 'Playboy@123'),
     (7, 'alaba', 'alaba@gmail.com', 'david', 'David', '0841454545', 1, 1, '$2b$10$87jIxJAi7oyLzZaFAtIkTeIheQu1JSDXC2gYIKB0KZ/LAaAJzNJfa');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `visitor_tag`
@@ -349,14 +299,7 @@ CREATE TABLE `visitor_tag`
 (`visitor_id`) REFERENCES `visitors`
 (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `visitor_tag`
---
-
-LOCK TABLES `visitor_tag` WRITE;
-/*!40000 ALTER TABLE `visitor_tag` DISABLE KEYS */;
 INSERT INTO `
 visitor_tag`
 VALUES
@@ -368,12 +311,7 @@ VALUES
     (7, '001'),
     (8, '001'),
     (9, '001');
-/*!40000 ALTER TABLE `visitor_tag` ENABLE KEYS */;
-UNLOCK TABLES;
 
---
--- Table structure for table `visitors`
---
 
 DROP TABLE IF EXISTS `visitors`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -402,14 +340,7 @@ CREATE TABLE `visitors`
 (`user_id`) REFERENCES `users`
 (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `visitors`
---
-
-LOCK TABLES `visitors` WRITE;
-/*!40000 ALTER TABLE `visitors` DISABLE KEYS */;
 INSERT INTO `
 visitors`
 VALUES
@@ -422,16 +353,4 @@ VALUES
     (7, 'Jamie Foster', 3, 4, '2022-09-07 11:14:09', 'jksbvsioanvionsviobf', '056346546+5'),
     (8, 'David Abah', 3, 2, '2022-09-07 11:41:52', 'Aso Rock', '658948998'),
     (9, 'Zack the Coder', 4, 1, '2022-09-07 12:03:27', 'Layer 3', '345678i');
-/*!40000 ALTER TABLE `visitors` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2022-09-07 16:31:54
