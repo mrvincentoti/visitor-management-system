@@ -15,7 +15,6 @@ module.exports = {
     );
   },
   createUsers: (data, callBack) => {
-    console.log(data)
     pool.query(
       `insert into users (username,  email, first_name, last_name, phone_number, gender_id, department_id, password ) 
       values(?,?,?,?,?,?,?,?)`,
@@ -368,7 +367,6 @@ const addVisitorTag = (visitorId) =>{
       const tagNumb = JSON.parse(JSON.stringify(results));
       numb = tagNumb[0].tag_number;
       const val = visitorId + " " + numb;
-      console.log(val);
       pool.query(
         `insert into visitor_tag(visitor_id,tag) values(?,?)`,
           [visitorId,numb]
