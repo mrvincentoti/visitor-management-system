@@ -25,10 +25,10 @@ const { checkToken } = require('../../auth/token_validation');
 
 
 //Now we have to define the route for all the controllers
-router.post('/visitor/createVisitors', checkToken, createVisitors);    //we are passing the request to 'creatUser' in the user.controller
-router.get('/visitor/getVisitors', checkToken, getVisitors);
+router.post('/visitor/createVisitors', createVisitors);    //we are passing the request to 'creatUser' in the user.controller
+router.get('/visitor/getVisitors', getVisitors);
 //router.get('/visitor/getVisitors', checkToken, getVisitors);
-router.get('/visitor/getAllVisitors',  getAllVisitors);
+router.get('/visitor/getAllVisitors', getAllVisitors);
 router.get('/visitor/getVisitorsByVisitorId', getVisitorsByVisitorId);
 router.patch('/visitor/updateVisitors', checkToken, updateVisitors);
 router.delete('/visitor/deleteVisitors', checkToken, deleteVisitors);
@@ -40,8 +40,8 @@ router.get('/user/getUsers', getUsers);
 router.post('/user/createUsers', createUsers);
 router.get('/visitor/getVisitorPurpose', getVisitorPurpose);
 router.get('/visitor/getVisitorByFullname', getVisitorByFullname);
-router.get('/visitor/getVisitorsNumber', checkToken, getVisitorsNumber);
-router.get('/visitor/getVisitorsSignOutNumber', checkToken, getVisitorsSignOutNumber);
+router.get('/visitor/getVisitorsNumber', getVisitorsNumber);
+router.get('/visitor/getVisitorsSignOutNumber', getVisitorsSignOutNumber);
 router.patch('/visitor/updateVisitorClockout', updateVisitorClockout);
 router.get('/visitor/getVisitorByFullname', getVisitorByFullname);
 router.get('/visitor/signedInVisitors', signedInVisitors);

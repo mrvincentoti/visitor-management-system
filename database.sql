@@ -6,8 +6,7 @@ USE vms;
 DROP TABLE IF EXISTS user_type;
 CREATE TABLE user_type(
     id int not null primary key auto_increment,
-    `type` varchar
-(16) not null
+    `type` varchar(16) not null
 );
 
 INSERT INTO user_type
@@ -27,8 +26,7 @@ VALUES('Visitor');
 DROP TABLE IF EXISTS department;
 CREATE TABLE department(
     id int not null primary key auto_increment,
-    department varchar
-(16) not null
+    department varchar(16) not null
 );
 
 INSERT INTO department
@@ -62,8 +60,7 @@ VALUES('Product Unit');
 DROP TABLE IF EXISTS gender;
 CREATE TABLE gender(
     id int not null primary key auto_increment,
-    gender varchar
-(16) not null
+    gender varchar(16) not null
 );
 
 INSERT INTO gender
@@ -79,8 +76,7 @@ VALUES('F');
 DROP TABLE IF EXISTS purpose;
 CREATE TABLE purpose(
     id int not null primary key auto_increment,
-    purpose varchar
-(16) not null
+    purpose varchar(16) not null
 );
 
 INSERT INTO purpose
@@ -104,26 +100,16 @@ VALUES('Work');
 DROP TABLE IF EXISTS users;
 CREATE TABLE users(
     id int not null primary key auto_increment,
-    username varchar
-(16) not null,
-    email varchar
-(32) not null,
-    first_name varchar
-(32) not null,
-    last_name varchar
-(32) not null,
-    phone_number varchar
-(16),
+    username varchar(16) not null,
+    email varchar(32) not null,
+    first_name varchar(32) not null,
+    last_name varchar(32) not null,
+    phone_number varchar(16),
     gender_id int not null,
     department_id int not null,
-    password varchar
-(255) not null,
-    CONSTRAINT FK_DEPARTMENT FOREIGN KEY
-(department_id) REFERENCES department
-(id),
-    CONSTRAINT FK_GENDER FOREIGN KEY
-(gender_id) REFERENCES gender
-(id)
+    password varchar(255) not null,
+    CONSTRAINT FK_DEPARTMENT FOREIGN KEY(department_id) REFERENCES department(id),
+    CONSTRAINT FK_GENDER FOREIGN KEY(gender_id) REFERENCES gender(id)
 );
 
 INSERT INTO users
@@ -150,20 +136,14 @@ VALUES('zach', 'civirzach@gmail.com', 'CIVIR-TER', 'ZACH-UKOH', '08130402087', 1
 DROP TABLE IF EXISTS visitors;
 CREATE TABLE visitors(
     id int(11) not null primary key auto_increment,
-    fullname varchar
-(64) not null,
+    fullname varchar(64) not null,
     user_id int null,
     purpose_id int null,
     date_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     address text,
-    phone_number varchar
-(16),
-    CONSTRAINT FK_WHOM_TO_SEE FOREIGN KEY
-(user_id) references users
-(id),
-    CONSTRAINT FK_PURPOSE FOREIGN KEY
-(purpose_id) references purpose
-(id)
+    phone_number varchar(16),
+    CONSTRAINT FK_WHOM_TO_SEE FOREIGN KEY(user_id) references users(id),
+    CONSTRAINT FK_PURPOSE FOREIGN KEY(purpose_id) references purpose(id)
 );
 
 INSERT INTO visitors
